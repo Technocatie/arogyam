@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AROGYAM</title>
+    <style>
+        :root {
+            --primary-color: #2c7be5;
+            --primary-dark: #1a68d1;
+            --secondary-color: #95aac9;
+            --background-color: #f9fbfd;
+            --border-color: #d2ddec;
+            --text-color: #12263f;
+            --text-muted: #95aac9;
+            --success-color: #00d97e;
+            --danger-color: #e63757;
+            --warning-color: #f6c343;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .header h1 {
+            font-weight: 600;
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(18, 38, 63, 0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .card-header {
+            margin-bottom: 20px;
+        }
+        
+        .card-header h2 {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--text-color);
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -12px;
+        }
+        
+        .form-group {
+            padding: 12px;
+            width: 100%;
+        }
+        
+        @media (min-width: 576px) {
+            .form-group.col-sm-6 {
+                width: 50%;
+            }
+            
+            .form-group.col-sm-4 {
+                width: 33.33%;
+            }
+            
+            .form-group.col-sm-3 {
+                width: 25%;
+            }
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-color);
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: 0;
+            box-shadow: 0 0 0 3px rgba(44, 123, 229, 0.1);
+        }
+        
+        .form-select {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--text-color);
+            background-color: #fff;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2395aac9' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        
+        .form-select:focus {
+            border-color: var(--primary-color);
+            outline: 0;
+            box-shadow: 0 0 0 3px rgba(44, 123, 229, 0.1);
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .form-check-input {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        
+        .form-check-input:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3e%3cpath fill='%23fff' d='M3.795 7.096l-2.03-2.03-1.414 1.414 3.444 3.444 7.142-7.142-1.414-1.414z'/%3e%3c/svg%3e");
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .form-check-input:focus {
+            border-color: var(--primary-color);
+            outline: 0;
+            box-shadow: 0 0 0 3px rgba(44, 123, 229, 0.1);
+        }
+        
+        .form-check-label {
+            font-size: 14px;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+        
+        .form-radio {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .form-radio-input {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        
+        .form-radio-input:checked {
+            border: 5px solid var(--primary-color);
+        }
+        
+        .form-radio-input:focus {
+            outline: 0;
+            box-shadow: 0 0 0 3px rgba(44, 123, 229, 0.1);
+        }
+        
+        .form-radio-label {
+            font-size: 14px;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+        
+        .input-group {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            width: 100%;
+        }
+        
+        .input-group-text {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--text-muted);
+            text-align: center;
+            white-space: nowrap;
+            background-color: #f9fbfd;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+        
+        .input-group > .form-control:not(:last-child),
+        .input-group > .form-select:not(:last-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        
+        .input-group > .input-group-text:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, 
+                        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        
+        .btn-primary {
+            color: #fff;
+            background-color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+        
+        .btn-lg {
+            padding: 14px 24px;
+            font-size: 16px;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-4 {
+            margin-top: 24px;
+        }
+        
+        .mb-4 {
+            margin-bottom: 24px;
+        }
+        
+        .results {
+            display: none;
+        }
+        
+        .alert {
+            position: relative;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+        }
+        
+        .alert-info {
+            color: #0d5cab;
+            background-color: #e6f1fc;
+            border-color: #c7e1fb;
+        }
+        
+        .result-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        
+        .result-value {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .risk-level {
+            display: inline-block;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 20px;
+            margin-left: 10px;
+        }
+        
+        .risk-low {
+            background-color: rgba(0, 217, 126, 0.1);
+            color: var(--success-color);
+        }
+        
+        .risk-moderate {
+            background-color: rgba(246, 195, 67, 0.1);
+            color: var(--warning-color);
+        }
+        
+        .risk-high {
+            background-color: rgba(230, 55, 87, 0.1);
+            color: var(--danger-color);
+        }
+        
+        .recommendation-list {
+            list-style-type: none;
+            margin-top: 16px;
+        }
+        
+        .recommendation-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        
+        .recommendation-list li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='%232c7be5' d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 0 10px;
+            position: relative;
+        }
+        
+        .step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 14px;
+            left: calc(50% + 20px);
+            right: calc(-50% + 20px);
+            height: 2px;
+            background-color: var(--border-color);
+            z-index: 1;
+        }
+        
+        .step.active:not(:last-child):after {
+            background-color: var(--primary-color);
+        }
+        
+        .step-icon {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 2px solid var(--border-color);
+            margin-bottom: 8px;
+            z-index: 2;
+        }
+        
+        .step.active .step-icon {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .step-text {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        
+        .step.active .step-text {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e9ecef;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .toggle-label {
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-text {
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        .ai-prediction-container {
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .ai-model-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background-color: rgba(44, 123, 229, 0.1);
+            border-radius: 20px;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .ai-icon {
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .prediction-result {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .prediction-status {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .prediction-detail {
+            font-size: 18px;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .prediction-accuracy {
+            margin: 24px 0;
+        }
+
+        .accuracy-meter {
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+
+        .accuracy-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+
+        .accuracy-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .model-info {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+
+        .model-info p {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .model-disclaimer {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 12px !important;
+        }
+
+        .status-diabetes {
+            color: var(--danger-color);
+        }
+
+        .status-prediabetes {
+            color: var(--warning-color);
+        }
+
+        .status-no-diabetes {
+            color: var(--success-color);
+        }
+
+        @media (max-width: 768px) {
+            .prediction-status {
+                font-size: 24px;
+            }
+            
+            .prediction-detail {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .prediction-status {
+                font-size: 20px;
+            }
+            
+            .ai-model-badge {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Diabetes Risk Assessment Tool</h1>
+            <p>Complete the form below to assess your risk factors for diabetes</p>
+        </div>
+        
+        <div class="steps">
+            <div class="step active">
+                <div class="step-icon">1</div>
+                <div class="step-text">Personal Info</div>
+            </div>
+            <div class="step">
+                <div class="step-icon">2</div>
+                <div class="step-text">Medical History</div>
+            </div>
+            <div class="step">
+                <div class="step-icon">3</div>
+                <div class="step-text">Lab Results</div>
+            </div>
+            <div class="step">
+                <div class="step-icon">4</div>
+                <div class="step-text">Assessment</div>
+            </div>
+        </div>
+        
+        <form id="diabetesForm">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Personal Information</h2>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label class="form-label" for="gender">Gender</label>
+                        <select class="form-select" id="gender" required>
+                            <option value="" selected disabled>Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="form-label" for="age">Age</label>
+                        <input type="number" class="form-control" id="age" placeholder="Enter your age" min="18" max="120" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label class="form-label" for="height">Height (cm)</label>
+                        <input type="number" class="form-control" id="height" placeholder="Enter your height" min="100" max="250" required>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="form-label" for="weight">Weight (kg)</label>
+                        <input type="number" class="form-control" id="weight" placeholder="Enter your weight" min="30" max="300" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="bmi">BMI (Body Mass Index)</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="bmi" placeholder="Calculated automatically" readonly>
+                        <span class="input-group-text">kg/m²</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2>Medical History</h2>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label class="form-label">Hypertension (High Blood Pressure)</label>
+                        <div class="toggle-label">
+                            <label class="switch">
+                                <input type="checkbox" id="hypertension">
+                                <span class="slider"></span>
+                            </label>
+                            <span class="toggle-text" id="hypertensionText">No</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                        <label class="form-label">Heart Disease</label>
+                        <div class="toggle-label">
+                            <label class="switch">
+                                <input type="checkbox" id="heartDisease">
+                                <span class="slider"></span>
+                            </label>
+                            <span class="toggle-text" id="heartDiseaseText">No</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Smoking History</label>
+                    <div class="form-row">
+                        <div class="form-group col-sm-4">
+                            <div class="form-radio">
+                                <input type="radio" class="form-radio-input" id="noInfo" name="smokingHistory" value="no_info" checked>
+                                <label class="form-radio-label" for="noInfo">No Info</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <div class="form-radio">
+                                <input type="radio" class="form-radio-input" id="never" name="smokingHistory" value="never">
+                                <label class="form-radio-label" for="never">Never</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <div class="form-radio">
+                                <input type="radio" class="form-radio-input" id="former" name="smokingHistory" value="former">
+                                <label class="form-radio-label" for="former">Former</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-4">
+                            <div class="form-radio">
+                                <input type="radio" class="form-radio-input" id="current" name="smokingHistory" value="current">
+                                <label class="form-radio-label" for="current">Current</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <div class="form-radio">
+                                <input type="radio" class="form-radio-input" id="notCurrent" name="smokingHistory" value="not_current">
+                                <label class="form-radio-label" for="notCurrent">Not Current</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <div class="form-radio">
+                                <input type="radio" class="form-radio-input" id="ever" name="smokingHistory" value="ever">
+                                <label class="form-radio-label" for="ever">Ever</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2>Laboratory Results</h2>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label class="form-label" for="hba1c">HbA1c Level</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="hba1c" placeholder="Enter HbA1c value" step="0.1" min="3" max="15">
+                            <span class="input-group-text">%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                        <label class="form-label" for="bloodGlucose">Blood Glucose Level (Fasting)</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="bloodGlucose" placeholder="Enter blood glucose value" min="50" max="500">
+                            <span class="input-group-text">mg/dL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" id="aiPredictionCard" style="display: none;">
+                <div class="card-header">
+                    <h2>AI Model Prediction</h2>
+                </div>
+                
+                <div class="ai-prediction-container">
+                    <div class="ai-model-badge">
+                        <div class="ai-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a4 4 0 0 1 4 4M12 2a4 4 0 0 0-4 4M12 2v4M2 12h4M2 12a4 4 0 0 0 4-4M2 12a4 4 0 0 1 4 4M22 12h-4M22 12a4 4 0 0 1-4-4M22 12a4 4 0 0 0-4 4M12 22a4 4 0 0 0 4-4M12 22a4 4 0 0 1-4-4M12 22v-4M4 4l16 16"/>
+                            </svg>
+                        </div>
+                        <span>Glugogenius v2.0</span>
+                    </div>
+                    
+                    <div class="prediction-result">
+                        <div class="prediction-status" id="aiPredictionStatus">
+
+                        </div>
+                        
+                        <div class="prediction-detail" id="aiPredictionDetail">
+
+                        </div>
+                    </div>
+                    
+                    <div class="model-info">
+                        <p>This prediction is powered by Glugogenius v2.0, a machine learning model trained on over 100,000 patient records with 97.17% accuracy.</p>
+                        <p class="model-disclaimer">AI prediction is for informational purposes only and should not replace professional medical advice.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="button" id="calculateBtn" class="btn btn-primary btn-lg">Calculate Risk</button>
+            </div>
+        </form>
+        
+
+        <div class="card results" id="resultsCard">
+            <div class="card-header">
+                <h2>Your Diabetes Risk Assessment</h2>
+            </div>
+            
+            <div class="alert alert-info mb-4">
+                This assessment is provided for informational purposes only and is not a medical diagnosis. Please consult with a healthcare professional for proper evaluation.
+            </div>
+            
+            <div>
+                <div class="result-label">Risk Category</div>
+                <div class="result-value">
+                    <span id="riskCategory">Moderate</span>
+                    <span id="riskLevel" class="risk-level risk-moderate">MODERATE</span>
+                </div>
+                
+                <div class="result-label">Risk Factors Identified</div>
+                <div class="result-value" id="riskFactorsCount">3</div>
+                
+                <div class="result-label">Recommendations</div>
+                <ul class="recommendation-list" id="recommendationsList">
+                    <li>Schedule an appointment with your healthcare provider for further assessment</li>
+                    <li>Consider modifying your diet to include more whole foods and fewer processed foods</li>
+                    <li>Aim for at least 150 minutes of moderate physical activity each week</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 AROGYAM. Not a substitute for professional medical advice.</p>
+        </div>
+    </div>
+    
+    <script>
+
+document.getElementById('height').addEventListener('input', calculateBMI);
+document.getElementById('weight').addEventListener('input', calculateBMI);
+
+function calculateBMI() {
+    const heightValue = document.getElementById('height').value;
+    const weightValue = document.getElementById('weight').value;
+    
+
+    if (heightValue && weightValue && !isNaN(heightValue) && !isNaN(weightValue)) {
+        const height = parseFloat(heightValue);
+        const weight = parseFloat(weightValue);
+        
+        if (height > 0 && weight > 0) {
+            const heightInMeters = height / 100;
+            const bmiValue = weight / (heightInMeters * heightInMeters);
+            document.getElementById('bmi').value = bmiValue.toFixed(1);
+        } else {
+            document.getElementById('bmi').value = "";
+        }
+    } else {
+        document.getElementById('bmi').value = "";
+    }
+}
+
+document.getElementById('hypertension').addEventListener('change', function() {
+    document.getElementById('hypertensionText').textContent = this.checked ? 'Yes' : 'No';
+});
+
+document.getElementById('heartDisease').addEventListener('change', function() {
+    document.getElementById('heartDiseaseText').textContent = this.checked ? 'Yes' : 'No';
+});
+
+function validateForm() {
+    const requiredFields = ['gender', 'age', 'height', 'weight'];
+    let isValid = true;
+    
+    requiredFields.forEach(field => {
+        const element = document.getElementById(field);
+        if (!element.value) {
+            isValid = false;
+            element.classList.add('is-invalid');
+        } else {
+            element.classList.remove('is-invalid');
+        }
+    });
+    
+    return isValid;
+}
+
+function updateSteps(stepNumber) {
+    const steps = document.querySelectorAll('.step');
+    steps.forEach((step, index) => {
+        if (index < stepNumber) {
+            step.classList.add('active');
+        } else {
+            step.classList.remove('active');
+        }
+    });
+}
+
+async function runAIPrediction (userData) {
+    
+    console.log(userData)
+    const response = await fetch("https://akshay4.pythonanywhere.com/predict", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userData)
+    }).then(data => data.json())
+    console.log(response)
+    return response
+}
+
+
+function displayAIPrediction(prediction) {
+    const statusElement = document.getElementById('aiPredictionStatus');
+    const detailElement = document.getElementById('aiPredictionDetail');
+    
+    statusElement.className = '';
+    
+    if (prediction.pred) {
+        if (prediction.type === 2) {
+            statusElement.textContent = "Type 2 Diabetes Detected";
+            statusElement.classList.add('status-prediabetes');
+            detailElement.textContent = "Our AI model indicates you may be at risk of developing diabetes. Early intervention can help prevent progression to type 2 diabetes.";
+        } else if(prediction.type === 1) {
+            statusElement.textContent = "Type 1 Diabetes Detected";
+            statusElement.classList.add('status-diabetes');
+            detailElement.textContent = `Our AI model predicts a high likelihood of ${prediction.type} diabetes. Please consult a healthcare professional for proper diagnosis and treatment.`;
+        }else{
+            statusElement.textContent = "Borderline Diabetes Detected";
+            statusElement.classList.add('status-diabetes');
+            detailElement.textContent = `Our AI model predicts a high likelihood of Borderline diabetes. Please consult a healthcare professional Before it developes to the type 2 Diabetes`;
+        
+        }
+    } else {
+        statusElement.textContent = "No Diabetes Detected";
+        statusElement.classList.add('status-no-diabetes');
+        detailElement.textContent = "Based on the information provided, our AI model predicts you are not currently showing signs of diabetes.";
+    }
+}
+
+document.getElementById('calculateBtn').addEventListener('click', async function() {
+    if (!validateForm()) {
+        alert("Please fill in all required fields.");
+        return;
+    }
+    const gender = document.getElementById('gender').value;
+    const age = parseInt(document.getElementById('age').value);
+    const bmi = parseFloat(document.getElementById('bmi').value);
+    const hypertension = document.getElementById('hypertension').checked;
+    const heartDisease = document.getElementById('heartDisease').checked;
+    const smokingHistory = document.querySelector('input[name="smokingHistory"]:checked').value;
+    const hba1c = parseFloat(document.getElementById('hba1c').value) || 0;
+    const bloodGlucose = parseFloat(document.getElementById('bloodGlucose').value) || 0;
+    
+    const aiPredictionCard = document.getElementById('aiPredictionCard');
+    aiPredictionCard.style.display = 'block';
+    document.getElementById('aiPredictionStatus').textContent = "Analyzing your data...";
+    document.getElementById('aiPredictionDetail').textContent = "Our AI model is processing your information. This will take just a moment.";
+    
+    
+    aiPredictionCard.scrollIntoView({ behavior: 'smooth' });
+    
+    
+    const userData = {
+        gender,
+        age,
+        bmi,
+        hypertension,
+        heartDisease,
+        smokingHistory,
+        hba1c,
+        bloodGlucose
+    };
+    
+    
+    const prediction = await runAIPrediction(userData);
+    
+    
+    displayAIPrediction(prediction);
+    
+    let riskFactors = 0;
+    let riskCategory = "Low";
+    let riskFactorsList = [];
+    
+    
+    if (age > 45) {
+        riskFactors++;
+        riskFactorsList.push("Age over 45");
+    }
+    
+    if (bmi >= 25 && bmi < 30) {
+        riskFactors++;
+        riskFactorsList.push("Overweight (BMI 25-29.9)");
+    }
+    if (bmi >= 30) {
+        riskFactors += 2;
+        riskFactorsList.push("Obesity (BMI 30+)");
+    }
+    
+    if (hypertension) {
+        riskFactors++;
+        riskFactorsList.push("Hypertension");
+    }
+    if (heartDisease) {
+        riskFactors++;
+        riskFactorsList.push("Heart Disease");
+    }
+    
+    if (smokingHistory === 'current') {
+        riskFactors++;
+        riskFactorsList.push("Current smoker");
+    } else if (smokingHistory === 'ever') {
+        riskFactors++;
+        riskFactorsList.push("History of smoking");
+    }
+    
+    if (hba1c >= 5.7 && hba1c < 6.5) {
+        riskFactors += 2;
+        riskFactorsList.push("Prediabetic HbA1c (5.7-6.4%)");
+    } else if (hba1c >= 6.5) {
+        riskFactors += 3;
+        riskFactorsList.push("Diabetic HbA1c (6.5%+)");
+    }
+    
+    if (bloodGlucose >= 100 && bloodGlucose < 126) {
+        riskFactors++;
+        riskFactorsList.push("Impaired fasting glucose (100-125 mg/dL)");
+    } else if (bloodGlucose >= 126) {
+        riskFactors += 2;
+        riskFactorsList.push("Diabetic fasting glucose (126+ mg/dL)");
+    }
+    
+    if (riskFactors <= 2) {
+        riskCategory = "Low";
+        document.getElementById('riskLevel').className = "risk-level risk-low";
+        document.getElementById('riskLevel').textContent = "LOW";
+    } else if (riskFactors <= 5) {
+        riskCategory = "Moderate";
+        document.getElementById('riskLevel').className = "risk-level risk-moderate";
+        document.getElementById('riskLevel').textContent = "MODERATE";
+    } else {
+        riskCategory = "High";
+        document.getElementById('riskLevel').className = "risk-level risk-high";
+        document.getElementById('riskLevel').textContent = "HIGH";
+    }
+    
+    document.getElementById('riskCategory').textContent = riskCategory;
+    document.getElementById('riskFactorsCount').textContent = `${riskFactors} (${riskFactorsList.length ? riskFactorsList.join(", ") : "None"})`;
+    
+    const recommendationsList = document.getElementById('recommendationsList');
+    recommendationsList.innerHTML = '';
+    
+    recommendationsList.innerHTML += '<li>Schedule a follow-up with your healthcare provider to discuss your risk factors</li>';
+    
+    if (prediction.hasDiabetes) {
+        if (prediction.diabetesType === "Type 1") {
+            recommendationsList.innerHTML += '<li><strong>AI Recommendation:</strong> The AI model detected possible Type 1 diabetes. Immediate medical consultation is advised for proper diagnosis and insulin therapy assessment.</li>';
+        } else if (prediction.diabetesType === "Type 2") {
+            recommendationsList.innerHTML += '<li><strong>AI Recommendation:</strong> The AI model detected possible Type 2 diabetes. Medical evaluation is recommended for diagnosis confirmation and treatment planning.</li>';
+        } else {
+            recommendationsList.innerHTML += '<li><strong>AI Recommendation:</strong> The AI model detected possible prediabetes. Consider lifestyle modifications and regular monitoring.</li>';
+        }
+    }
+    
+    if (bmi >= 25) {
+        recommendationsList.innerHTML += '<li>Work on achieving a healthy weight through balanced diet and regular physical activity</li>';
+    }
+    
+    if (smokingHistory === 'current') {
+        recommendationsList.innerHTML += '<li>Consider smoking cessation programs or aids to quit smoking</li>';
+    }
+    
+    if (riskCategory === "Low") {
+        recommendationsList.innerHTML += '<li>Maintain a healthy lifestyle with regular exercise and balanced diet</li>';
+        recommendationsList.innerHTML += '<li>Get screened for diabetes every 3 years</li>';
+    } else if (riskCategory === "Moderate") {
+        recommendationsList.innerHTML += '<li>Aim for at least 150 minutes of moderate physical activity each week</li>';
+        recommendationsList.innerHTML += '<li>Consider modifying your diet to include more whole foods and fewer processed foods</li>';
+        recommendationsList.innerHTML += '<li>Get screened for diabetes annually</li>';
+    } else { 
+        recommendationsList.innerHTML += '<li>Consider consulting with a diabetes educator or nutritionist</li>';
+        recommendationsList.innerHTML += '<li>Monitor your blood glucose levels regularly</li>';
+        recommendationsList.innerHTML += '<li>Consider more frequent diabetes screening as advised by your healthcare provider</li>';
+        recommendationsList.innerHTML += '<li>Take active steps to address modifiable risk factors such as diet, exercise, and weight management</li>';
+    }
+    setTimeout(() => {
+        document.getElementById('resultsCard').style.display = 'block';
+        updateSteps(4);
+    }, 1000);
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const resetBtn = document.getElementById('resetBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            document.getElementById('diabetesForm').reset();
+            document.getElementById('bmi').value = '';
+            document.getElementById('resultsCard').style.display = 'none';
+            document.getElementById('aiPredictionCard').style.display = 'none';
+            document.getElementById('hypertensionText').textContent = 'No';
+            document.getElementById('heartDiseaseText').textContent = 'No';
+            updateSteps(1); 
+        });
+    }
+});
+    </script>
+</body>
+</html>     

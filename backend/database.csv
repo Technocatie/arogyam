@@ -1,0 +1,5 @@
+gender,age,hypertension,heart_disease,smoking_history,bmi,HbA1c_level,blood_glucose_level,diabetes
+Male,21.0,1,0,never,24.9,6.6,110,0.0
+Male,21.0,1,0,never,24.9,6.6,110,0.0
+Male,21.0,0,0,No Info,22.5,7.2,155,1.0
+Male,21.0,0,1,never,24.9,6.6,110,0.0
