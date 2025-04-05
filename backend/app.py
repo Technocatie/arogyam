@@ -31,7 +31,7 @@ def model_processing(dt):
     has_high_hba1c = df["HbA1c_level"].iloc[0] >= HBA1C_THRESHOLD
     has_high_glucose = df["blood_glucose_level"].iloc[0] >= GLUCOSE_THRESHOLD
     if pred[0] == 1.0:
-        if has_high_hba1c and has_high_glucose:
+        if has_high_hba1c or has_high_glucose:
             if df["age"].iloc[0] <= 18:
                 data["type"] = 1  # Type 1 Diabetes (Juvenile Diabetes)
             else:
